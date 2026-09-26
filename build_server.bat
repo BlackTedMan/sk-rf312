@@ -1,18 +1,19 @@
 @echo off
-echo === СК РП — сборка сервера в exe ===
+chcp 65001 >nul
+echo === CK RP - sborka servera v exe ===
 
 if not exist venv (
-    echo Создаю виртуальное окружение...
+    echo Sozdayu virtualnoe okruzhenie...
     python -m venv venv
 )
 
 call venv\Scripts\activate.bat
 
-echo Устанавливаю зависимости...
+echo Ustanavlivayu zavisimosti...
 pip install -r requirements.txt
 pip install pyinstaller
 
-echo Собираю exe...
+echo Sobirayu exe...
 pyinstaller --noconfirm --onefile --console --name "SK-Server" ^
     --hidden-import=bcrypt ^
     --collect-submodules=uvicorn ^
@@ -21,6 +22,6 @@ pyinstaller --noconfirm --onefile --console --name "SK-Server" ^
     main.py
 
 echo.
-echo Готово! Файл лежит в dist\SK-Server.exe
-echo (база sk_app.db создастся рядом с exe при первом запуске)
+echo Gotovo! Fayl lezhit v dist\SK-Server.exe
+echo (baza sk_app.db sozdastsya ryadom s exe pri pervom zapuske)
 pause

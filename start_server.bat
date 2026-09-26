@@ -1,18 +1,20 @@
 @echo off
-echo === СК РП — запуск сервера ===
+chcp 65001 >nul
+echo === CK RP - zapusk servera ===
 
 if not exist venv (
-    echo Первый запуск: создаю окружение и ставлю зависимости...
+    echo Sozdayu virtualnoe okruzhenie...
     python -m venv venv
-    call venv\Scripts\activate.bat
-    pip install -r requirements.txt
-) else (
-    call venv\Scripts\activate.bat
 )
 
+call venv\Scripts\activate.bat
+
+echo Proveryayu zavisimosti...
+pip install -r requirements.txt
+
 echo.
-echo Сервер запускается на http://localhost:8000
-echo (не закрывайте это окно, пока сервер должен работать)
+echo Server zapuskaetsya na http://localhost:8000
+echo (ne zakryvayte eto okno, poka server dolzhen rabotat)
 echo.
 uvicorn main:app --host 0.0.0.0 --port 8000
 pause
